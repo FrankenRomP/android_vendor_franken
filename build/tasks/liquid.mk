@@ -17,7 +17,7 @@
 # -----------------------------------------------------------------
 # LiquidRemix OTA update package
 
-LIQUID_TARGET_PACKAGE := $(PRODUCT_OUT)/liquid_remix-$(LIQUID_VERSION).zip
+LIQUID_TARGET_PACKAGE := $(PRODUCT_OUT)/franken_rom-$(LIQUID_VERSION).zip
 
 .PHONY: liquid
 liquid: $(INTERNAL_OTA_PACKAGE_TARGET)
