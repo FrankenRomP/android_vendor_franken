@@ -181,7 +181,7 @@ $(call inherit-product-if-exists, vendor/liquid/prebuilt/common/prebuilt.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/liquid/overlay/common
 
 # Version System
-PRODUCT_VERSION_MAJOR = 10
+PRODUCT_VERSION_MAJOR = 11
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 
 
@@ -229,7 +229,7 @@ ifdef LIQUID_BUILDTYPE
     endif
 else
     # If LIQUID_BUILDTYPE is not defined, set to UNOFFICIAL
-    LIQUID_BUILDTYPE := UNOFFICIAL
+    LIQUID_BUILDTYPE := OFFICIAL
     LIQUID_EXTRAVERSION := 
 endif
 
