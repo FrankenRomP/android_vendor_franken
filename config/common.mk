@@ -179,6 +179,7 @@ $(call inherit-product-if-exists, vendor/franken/prebuilt/common/prebuilt.mk)
 
 # Vendor Overlays
 DEVICE_PACKAGE_OVERLAYS += vendor/franken/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/franken/overlay
 
 # Version System
 PRODUCT_VERSION_MAJOR = 16
