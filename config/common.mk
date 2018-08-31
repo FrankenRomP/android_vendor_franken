@@ -145,13 +145,8 @@ PRODUCT_PACKAGES += \
 # Extra tools
 PRODUCT_PACKAGES += \
     libsepol \
-    gdbserver \
-    micro_bench \
     mke2fs \
-    oprofiled \
     powertop \
-    sqlite3 \
-    strace \
     tune2fs
 
 # ExFAT support
