@@ -2,6 +2,7 @@
 # Copyright (C) 2012-2013, The CyanogenMod Project
 #           (C) 2017,      The LineageOS Project
 #           (C) 2017,      The LiquidRemix Project
+#           (C) 2018,      The FrankenRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -173,7 +174,7 @@ def add_to_manifest(repositories, fallback_branch = None):
         project = ElementTree.Element("project", attrib = { "path": repo_target,
             "remote": "github", "name": "FrankenRom/%s" % repo_name })
 
-        fallback_branch = "oc-mr1"
+        fallback_branch = "pie"
         if 'branch' in repository:
             project.set('revision',repository['branch'])
         elif fallback_branch:
@@ -194,7 +195,7 @@ def add_to_manifest(repositories, fallback_branch = None):
 
 def fetch_dependencies(repo_path, fallback_branch = None):
     print('Looking for dependencies in %s' % repo_path)
-    dependencies_path = repo_path + '/liquid.dependencies'
+    dependencies_path = repo_path + '/franken.dependencies'
     syncable_repos = []
     verify_repos = []
 
@@ -262,7 +263,7 @@ else:
             repo_path = "device/%s/%s" % (manufacturer, device)
             adding = {'repository':repo_name,'target_path':repo_path}
             
-            fallback_branch = "oc-mr1"
+            fallback_branch = "pie"
             if not has_branch(result, default_revision):
                 if os.getenv('ROOMSERVICE_BRANCHES'):
                     fallbacks = list(filter(bool, os.getenv('ROOMSERVICE_BRANCHES').split(' ')))

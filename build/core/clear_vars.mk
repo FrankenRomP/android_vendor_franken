@@ -1,5 +1,5 @@
 #
-# LiquidRemix-specific variable clears
+# FrankenRom-specific variable clears
 #
 LOCAL_IGNORE_SUBDIR :=
 

@@ -1,6 +1,7 @@
 # Copyright (C) 2017 Unlegacy-Android
 # Copyright (C) 2017 The LineageOS Project
 # Copyright (C) 2017 The LiquidRemix Project
+# Copyright (C) 2018 The FrankenRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +16,12 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# LiquidRemix OTA update package
+# FrankenRom OTA update package
 
-LIQUID_TARGET_PACKAGE := $(PRODUCT_OUT)/franken_rom-$(LIQUID_VERSION).zip
+FRANKEN_TARGET_PACKAGE := $(PRODUCT_OUT)/Franken_Rom-$(FRANKEN_VERSION).zip
 
-.PHONY: liquid
-liquid: $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LIQUID_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(LIQUID_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LIQUID_TARGET_PACKAGE).md5sum
-	@echo "Package Complete: $(LIQUID_TARGET_PACKAGE)" >&2
+.PHONY: franken
+franken: $(INTERNAL_OTA_PACKAGE_TARGET)
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(FRANKEN_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(FRANKEN_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(FRANKEN_TARGET_PACKAGE).md5sum
+	@echo "Package Complete: $(FRANKEN_TARGET_PACKAGE)" >&2

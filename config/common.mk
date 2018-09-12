@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= LiquidRemix
+PRODUCT_BRAND ?= FrankenRom
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -52,53 +52,53 @@ endif
 # LatineIME Gesture swyping
 ifneq ($(filter shamu,$(TARGET_PRODUCT)),)
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
-    vendor/liquid/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
+    vendor/franken/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
+    vendor/franken/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
 else
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so \
-    vendor/liquid/prebuilt/common/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so
+    vendor/franken/prebuilt/common/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so \
+    vendor/franken/prebuilt/common/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so
 endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/liquid/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/liquid/prebuilt/common/bin/50-liquid.sh:system/addon.d/50-liquid.sh \
-    vendor/liquid/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/franken/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/franken/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/franken/prebuilt/common/bin/50-liquid.sh:system/addon.d/50-liquid.sh \
+    vendor/franken/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
-    vendor/liquid/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/liquid/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+    vendor/franken/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
+    vendor/franken/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
+    vendor/franken/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
 endif
 
 # Backup services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/liquid/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/franken/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/franken/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/franken/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# LiquidRemix specific init file
+# FrankenRom specific init file
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/init.local.rc:root/init.liquid.rc
+    vendor/franken/prebuilt/common/etc/init.local.rc:root/init.franken.rc
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/franken/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Google Dialer
 PRODUCT_COPY_FILES +=  \
-    vendor/liquid/prebuilt/common/etc/sysconfig/dialer_experience.xml:system/etc/sysconfig/dialer_experience.xml 
+    vendor/franken/prebuilt/common/etc/sysconfig/dialer_experience.xml:system/etc/sysconfig/dialer_experience.xml 
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -108,34 +108,26 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# Include LiquidRemix boot animation
+# Include FrankenRom boot animation
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/media/bootanimation.zip:system/media/bootanimation.zip
+    vendor/franken/prebuilt/common/media/bootanimation.zip:system/media/bootanimation.zip
 
 # AR
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/calibration_cad.xml:system/etc/calibration_cad.xml
-
-# Themes
-$(call inherit-product-if-exists, vendor/liquid/products/themes.mk)
+    vendor/franken/prebuilt/common/etc/calibration_cad.xml:system/etc/calibration_cad.xml
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include vendor/liquid/config/twrp.mk
+include vendor/franken/config/twrp.mk
 endif
-
-# DU Utils Library
-PRODUCT_BOOT_JARS += \
-    org.dirtyunicorns.utils
-
-# DU Utils Package
-PRODUCT_PACKAGES += \
-    org.dirtyunicorns.utils
 
 # Required packages
 PRODUCT_PACKAGES += \
-    Launcher3 \
-    LiquidLounge
+    Launcher3 
+
+# Franken Stuff
+#PRODUCT_PACKAGES += \
+#    Lab
 
 # Optional packages
 PRODUCT_PACKAGES += \
@@ -148,10 +140,7 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     ExactCalculator \
-    OmniJaws \
-    OmniStyle \
-	MusicFX \
-    DU-Fonts
+	MusicFX 
 
 # Extra tools
 PRODUCT_PACKAGES += \
@@ -191,104 +180,104 @@ PRODUCT_PACKAGES += \
 endif
 
 # Prebuilt Apps
-$(call inherit-product-if-exists, vendor/liquid/prebuilt/common/prebuilt.mk)
+$(call inherit-product-if-exists, vendor/franken/prebuilt/common/prebuilt.mk)
 
 # Vendor Overlays
-DEVICE_PACKAGE_OVERLAYS += vendor/liquid/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/franken/overlay/common
 
 # Version System
-PRODUCT_VERSION_MAJOR = 15
+PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 
 
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    LIQUID_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+    FRANKEN_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    LIQUID_VERSION_MAINTENANCE := 
+    FRANKEN_VERSION_MAINTENANCE := 
 endif
 
-# Set LIQUID_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set FRANKEN_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
-ifndef LIQUID_BUILDTYPE
+ifndef FRANKEN_BUILDTYPE
     ifdef RELEASE_TYPE
-        # Starting with "LIQUID_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^LIQUID_||g')
-        LIQUID_BUILDTYPE := $(RELEASE_TYPE)
+        # Starting with "FRANKEN_" is optional
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^FRANKEN_||g')
+        FRANKEN_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
 ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LIQUID_BUILDTYPE)),)
-    LIQUID_BUILDTYPE :=
+    FRANKEN_BUILDTYPE :=
 endif
 
-ifdef LIQUID_BUILDTYPE
-    ifneq ($(LIQUID_BUILDTYPE), SNAPSHOT)
-        ifdef LIQUID_EXTRAVERSION
+ifdef FRANKEN_BUILDTYPE
+    ifneq ($(FRANKEN_BUILDTYPE), SNAPSHOT)
+        ifdef FRANKEN_EXTRAVERSION
             # Force build type to EXPERIMENTAL
-            LIQUID_BUILDTYPE := EXPERIMENTAL
-            # Remove leading dash from LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := $(shell echo $(LIQUID_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := -$(LIQUID_EXTRAVERSION)
+            FRANKEN_BUILDTYPE := EXPERIMENTAL
+            # Remove leading dash from FRANKEN_EXTRAVERSION
+            FRANKEN_EXTRAVERSION := $(shell echo $(FRANKEN_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to FRANKEN_EXTRAVERSION
+            FRANKEN_EXTRAVERSION := -$(FRANKEN_EXTRAVERSION)
         endif
     else
-        ifndef LIQUID_EXTRAVERSION
+        ifndef FRANKEN_EXTRAVERSION
             # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            LIQUID_BUILDTYPE := EXPERIMENTAL
+            FRANKEN_BUILDTYPE := EXPERIMENTAL
         else
-            # Remove leading dash from LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := $(shell echo $(LIQUID_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to LIQUID_EXTRAVERSION
-            LIQUID_EXTRAVERSION := -$(LIQUID_EXTRAVERSION)
+            # Remove leading dash from FRANKEN_EXTRAVERSION
+            FRANKEN_EXTRAVERSION := $(shell echo $(FRANKEN_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to FRANKEN_EXTRAVERSION
+            FRANKEN_EXTRAVERSION := -$(FRANKEN_EXTRAVERSION)
         endif
     endif
 else
-    # If LIQUID_BUILDTYPE is not defined, set to UNOFFICIAL
-    LIQUID_BUILDTYPE := OFFICIAL
-    LIQUID_EXTRAVERSION := 
+    # If FRANKEN_BUILDTYPE is not defined, set to UNOFFICIAL
+    FRANKEN_BUILDTYPE := UNOFFICIAL
+    FRANKEN_EXTRAVERSION := 
 endif
 
-ifeq ($(LIQUID_BUILDTYPE), UNOFFICIAL)
+ifeq ($(FRANKEN_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        LIQUID_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        FRANKEN_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-ifeq ($(LIQUID_BUILDTYPE), RELEASE)
+ifeq ($(FRANKEN_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(LIQUID_BUILD)
+        FRANKEN_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(FRANKEN_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            ifeq ($(LIQUID_VERSION_MAINTENANCE),0)
-                LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(LIQUID_BUILD)
+            ifeq ($(FRANKEN_VERSION_MAINTENANCE),0)
+                FRANKEN_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(FRANKEN_BUILD)
             else
-                LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(LIQUID_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(LIQUID_BUILD)
+                FRANKEN_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(FRANKEN_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(FRANKEN_BUILD)
             endif
         else
-            LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(LIQUID_BUILD)
+            FRANKEN_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(FRANKEN_BUILD)
         endif
     endif
 else
-    ifeq ($(LIQUID_VERSION_MAINTENANCE),0)
-        LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(LIQUID_BUILDTYPE)$(LIQUID_EXTRAVERSION)-$(LIQUID_BUILD)
+    ifeq ($(FRANKEN_VERSION_MAINTENANCE),0)
+        FRANKEN_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(FRANKEN_BUILDTYPE)$(FRANKEN_EXTRAVERSION)-$(FRANKEN_BUILD)
     else
-        LIQUID_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(LIQUID_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(LIQUID_BUILDTYPE)$(LIQUID_EXTRAVERSION)-$(LIQUID_BUILD)
+        FRANKEN_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(FRANKEN_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(FRANKEN_BUILDTYPE)$(FRANKEN_EXTRAVERSION)-$(FRANKEN_BUILD)
     endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.liquid.version=$(LIQUID_VERSION) \
-    ro.liquid.releasetype=$(LIQUID_BUILDTYPE) \
-    ro.liquid.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.modversion=$(LIQUID_VERSION)
+    ro.franken.version=$(FRANKEN_VERSION) \
+    ro.franken.releasetype=$(FRANKEN_BUILDTYPE) \
+    ro.franken.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.modversion=$(FRANKEN_VERSION)
 
-LIQUID_DISPLAY_VERSION := $(LIQUID_VERSION)
+FRANKEN_DISPLAY_VERSION := $(FRANKEN_VERSION)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.liquid.display.version=$(LIQUID_DISPLAY_VERSION)
+    ro.franken.display.version=$(FRANKEN_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/liquid/config/partner_gms.mk
+-include vendor/franken/config/partner_gms.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)

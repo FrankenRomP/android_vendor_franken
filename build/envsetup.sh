@@ -1,6 +1,6 @@
-function __print_liquid_functions_help() {
+function __print_franken_functions_help() {
 cat <<EOF
-Additional LiquidRemix functions:
+Additional FrankenRom functions:
 - cout:            Changes directory to out.
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
@@ -47,7 +47,7 @@ function brunch()
 {
     breakfast $*
     if [ $? -eq 0 ]; then
-        mka liquid
+        mka franken
     else
         echo "No such item in brunch menu. Try 'breakfast'"
         return 1
@@ -59,10 +59,10 @@ function breakfast()
 {
     target=$1
     local variant=$2
-    LIQUID_DEVICES_ONLY="true"
+    FRANKEN_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/liquid/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/franken/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -78,12 +78,12 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the LiquidRemix model name
+            # This is probably just the FrankenRom model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
 
-            lunch liquid_$target-$variant
+            lunch franken_$target-$variant
         fi
     fi
     return $?
@@ -239,13 +239,13 @@ function _adb_connected {
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/liquid/build/tools/repopick.py $@
+    $T/vendor/franken/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
-    if [ ! -z $LIQUID_FIXUP_COMMON_OUT ]; then
+    if [ ! -z $FRANKEN_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
             ln -s ${common_out_dir}-${target_device} ${common_out_dir}

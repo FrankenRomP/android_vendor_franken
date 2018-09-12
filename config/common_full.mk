@@ -1,4 +1,4 @@
-# Inherit common LiquidRemix stuff
-$(call inherit-product, vendor/liquid/config/common.mk)
+# Inherit common FrankenRom stuff
+$(call inherit-product, vendor/franken/config/common.mk)
 
 PRODUCT_SIZE := full
