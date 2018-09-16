@@ -123,6 +123,9 @@ endif
 
 # Required packages
 PRODUCT_PACKAGES += \
+    Jelly \
+    Eleven \
+    Email \
     Launcher3 
 
 # Franken Stuff
@@ -136,11 +139,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     librsjni
-
-# Custom packages
-PRODUCT_PACKAGES += \
-    ExactCalculator \
-	MusicFX 
 
 # Extra tools
 PRODUCT_PACKAGES += \
