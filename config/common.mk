@@ -201,7 +201,7 @@ ifndef FRANKEN_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LIQUID_BUILDTYPE)),)
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(FRANKEN_BUILDTYPE)),)
     FRANKEN_BUILDTYPE :=
 endif
 
