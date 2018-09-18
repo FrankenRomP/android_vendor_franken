@@ -54,7 +54,7 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from FrankenRom Github (https://github.com/FrankenRom)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from FrankenRomP Github (https://github.com/FrankenRomP)." % device)
 
 repositories = []
 
@@ -74,7 +74,7 @@ def add_auth(githubreq):
         githubreq.add_header("Authorization","Basic %s" % githubauth)
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:FrankenRom+in:name+fork:true" % device)
+    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:FrankenRomP+in:name+fork:true" % device)
     add_auth(githubreq)
     try:
         result = json.loads(urllib.request.urlopen(githubreq).read().decode())
@@ -167,12 +167,12 @@ def add_to_manifest(repositories, fallback_branch = None):
         repo_target = repository['target_path']
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('FrankenRom/%s already fetched to %s' % (repo_name, repo_target))
+            print('FrankenRomP/%s already fetched to %s' % (repo_name, repo_target))
             continue
 
-        print('Adding dependency: FrankenRom/%s -> %s' % (repo_name, repo_target))
+        print('Adding dependency: FrankenRomP/%s -> %s' % (repo_name, repo_target))
         project = ElementTree.Element("project", attrib = { "path": repo_target,
-            "remote": "github", "name": "FrankenRom/%s" % repo_name })
+            "remote": "github", "name": "FrankenRomP/%s" % repo_name })
 
         fallback_branch = "pie"
         if 'branch' in repository:
@@ -291,4 +291,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the FrankenRom Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in the FrankenRomP Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
