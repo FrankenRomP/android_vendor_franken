@@ -126,7 +126,12 @@ PRODUCT_PACKAGES += \
     Jelly \
     Eleven \
     Email \
-    Launcher3 
+    PixelLauncher
+
+# Sysconfig
+PRODUCT_COPY_FILES += \
+    vendor/franken/prebuilt/common/etc/sysconfig/pixel.xml:system/etc/sysconfig/pixel.xml \
+    vendor/franken/prebuilt/common/etc/sysconfig/google-hiddenapi-package-whitelist.xml:system/etc/sysconfig/google-hiddenapi-package-whitelist.xml
 
 # Franken Stuff
 PRODUCT_PACKAGES += \
