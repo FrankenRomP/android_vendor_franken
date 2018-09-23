@@ -129,8 +129,8 @@ PRODUCT_PACKAGES += \
     Launcher3 
 
 # Franken Stuff
-#PRODUCT_PACKAGES += \
-#    Lab
+PRODUCT_PACKAGES += \
+    Lab
 
 # Optional packages
 PRODUCT_PACKAGES += \
