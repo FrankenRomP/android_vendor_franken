@@ -14,4 +14,5 @@
 
 # Prebuilt Packages
 PRODUCT_PACKAGES += \
+    MatchmakerPrebuilt \
     Turbo
